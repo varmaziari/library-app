@@ -1,0 +1,68 @@
+:host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login {
+    background-color: rgb(255, 255, 255);
+    padding: 1em;
+    min-width: 350px;
+}
+
+div:not(:first-child) {
+    margin: 1em;
+}
+
+input[type=text],
+input[type=password] {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border-radius: 0.4em;
+}
+
+button {
+    background-color: #4d1a7c;
+    color: white;
+    text-align: center;
+    width: 50%;
+    padding: 0.5em;
+    margin: 0 5em;
+    border-radius: 0.3em;
+    cursor: pointer;
+    border: none;
+}
+
+button[disabled] {
+    background-color: rgb(142, 142, 142);
+}
+
+button[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.message {
+    background-color: rgb(252, 71, 71);
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    border-radius: 0.1em;
+}
+
+.title {
+    box-sizing: border-box;
+    background-color: #7344a0;
+    color: white;
+    width: 100%;
+    padding: 0.3em;
+    text-align: center;
+    border-radius: 0.2em;
+}
+
+.subtitle{
+    color: rgb(207,87,87);
+    font-size: smaller;
+}
