@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { BooksService } from './books-service';
 import { FormsModule } from '@angular/forms';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-books-page',
-  imports: [FormsModule],
+  imports: [FormsModule,DecimalPipe],
   templateUrl: './books-page.html',
   styleUrl: './books-page.css',
 })
