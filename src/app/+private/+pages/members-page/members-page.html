@@ -1,1 +1,68 @@
-<p>members-page works!</p>
+@if (state=='list') {
+<div>
+    <button (click)="add()">افزودن</button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>شناسه</th>
+            <th>نام</th>
+            <th>نام خانوادگی </th>
+            <th>کدملی</th>
+            <th>شماره تلفن</th>
+            <th>آدرس </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (member of data; track $index) {
+        <tr>
+            <td>{{member.id}}</td>
+            <td>{{member.name}}</td>
+            <td>{{member.family}}</td>
+            <td>{{member.nationalCode}}</td>
+            <td>{{member.phoneNumber}}</td>
+            <td>{{member.address}}</td>
+            <td>
+                <button>ویرایش</button>
+                <button>حذف</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+@else{
+<form (ngSubmit)="save()">
+    <div class="layer">
+        <div>
+            <label for="id">شناسه</label>
+            <input [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
+        </div>
+        <div>
+            <label for="name">نام</label>
+            <input [(ngModel)]="item.name" type="text" id="name" name="name" placeholder="نام">
+        </div>
+        <div>
+            <label for="family">نام خانوادگی</label>
+            <input [(ngModel)]="item.family" type="text" id="family" name="family" placeholder="نام خانوادگی">
+        </div>
+        <div>
+            <label for="nationalCode">کد ملی</label>
+            <input [(ngModel)]="item.nationalCode" type="text" id="nationalCode" name="nationalCode" placeholder="کد ملی">
+        </div>
+        <div>
+            <label for="phoneNumber">شماره تلفن</label>
+            <input [(ngModel)]="item.phoneNumber" type="tel" id="phoneNumber" name="phoneNumber" placeholder="شماره تلفن">
+        </div>
+        <div>
+            <label for="address">آدرس</label>
+            <input [(ngModel)]="item.address" type="text" id="address" name="address" placeholder="آدرس">
+        </div>
+        <div>
+            <button type="submit">تایید</button>
+            <button (click)="cancel()" type="button">انصراف</button>
+        </div>
+    </div>
+</form>
+}

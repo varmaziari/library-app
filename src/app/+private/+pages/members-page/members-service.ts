@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+import { memberItem } from './members-page';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class MembersService {
+      private data:memberItem[]=[
+        {id:1,name:'علی',family:'حیدری',nationalCode:'3865245698',phoneNumber:'09186957845',address:'همدان'},
+        {id:2,name:'صبا',family:'صالحی',nationalCode:'4005245663',phoneNumber:'09306957444',address:'تهران'},
+      ];
+  
+      list(){
+        return [...this.data];
+      }
+  
+      add(member:memberItem) {
+        this.data.push(member);
+    }
+}
