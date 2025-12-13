@@ -18,6 +18,10 @@ export class LoginPage {
   message:string='';
   check(){
     if (this.loginform.username=='admin' && this.loginform.password=='admin') {
+      sessionStorage.setItem('token', 'dfgdghvbvtg#525adf@sf')
+      if (this.loginform.remember==true) {
+        localStorage.setItem('token', 'dfgdghvbvtg#525adf@sf')
+      }
       this.router.navigateByUrl('/private')
     } 
     else {

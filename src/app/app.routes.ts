@@ -6,10 +6,11 @@ import { BooksPage } from './+private/+pages/books-page/books-page';
 import { MembersPage } from './+private/+pages/members-page/members-page';
 import { BorrowsPage } from './+private/+pages/borrows-page/borrows-page';
 import { ReportsPage } from './+private/+pages/reports-page/reports-page';
+import { privateGuard } from './+shared/private-guard';
 
 export const routes: Routes = [
     {path:'login', component:LoginPage},
-    {path:'private', component:PrivateTemplate, children:[
+    {path:'private', canActivate:[privateGuard] , component:PrivateTemplate, children:[
         {path:'dashboard',component:DashboardPage},
         {path:'books',component:BooksPage},
         {path:'members',component:MembersPage},

@@ -1,1 +1,62 @@
-<p>books-page works!</p>
+@if (state=='list') {
+<div>
+    <button (click)="add()">افزودن</button>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>شناسه</th>
+            <th>عنوان</th>
+            <th>نویسنده</th>
+            <th>ناشر</th>
+            <th>قیمت</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (book of data; track $index) {
+        <tr>
+            <td>{{book.id}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.writer}}</td>
+            <td>{{book.publisher}}</td>
+            <td>{{book.price}}</td>
+            <td>
+                <button>ویرایش</button>
+                <button>حذف</button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+@else{
+<form (ngSubmit)="save()">
+    <div class="layer">
+        <div>
+            <label for="id">شناسه</label>
+            <input [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
+        </div>
+        <div>
+            <label for="title">عنوان</label>
+            <input [(ngModel)]="item.title" type="text" id="title" name="title" placeholder="عنوان">
+        </div>
+        <div>
+            <label for="writer">نویسنده</label>
+            <input [(ngModel)]="item.writer" type="text" id="writer" name="writer" placeholder="نویسنده">
+        </div>
+        <div>
+            <label for="publisher">ناشر</label>
+            <input [(ngModel)]="item.publisher" type="text" id="publisher" name="publisher" placeholder="ناشر">
+        </div>
+        <div>
+            <label for="price">قیمت</label>
+            <input [(ngModel)]="item.price" type="number" id="price" name="price" placeholder="قیمت">
+        </div>
+        <div>
+            <button type="submit">تایید</button>
+            <button (click)="cancel()" type="button">انصراف</button>
+        </div>
+    </div>
+</form>
+}
