@@ -9,7 +9,7 @@ import { MembersService } from './members-service';
   styleUrl: './members-page.css',
 })
 export class MembersPage implements OnInit {
-  booksService = inject(MembersService);
+  membersService = inject(MembersService);
   data: memberItem[] = []
   state: string = 'list';
   item: memberItem = {
@@ -21,12 +21,20 @@ export class MembersPage implements OnInit {
     address: '',
   };
   save() {
-    this.booksService.add(this.item);
+    if (this.state == 'add') {
+      this.membersService.add(this.item);
+    }
+    else if (this.state == 'edit') {
+      this.membersService.update(this.item);
+    }
+    else if (this.state == 'remove') {
+      this.membersService.remove(this.item);
+    }
     this.refreshData();
     this.state = 'list'
   }
   refreshData() {
-    this.data = this.booksService.list();
+    this.data = this.membersService.list();
   }
   cancel() {
     this.state = 'list'
@@ -44,6 +52,14 @@ export class MembersPage implements OnInit {
       phoneNumber: '',
       address: '',
     };
+  }
+  edit(member: memberItem) {
+    this.item = { ...member };
+    this.state = 'edit';
+  }
+  remove(member: memberItem) {
+    this.item = { ...member };
+    this.state = 'remove';
   }
 }
 export interface memberItem {

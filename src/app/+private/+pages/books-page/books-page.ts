@@ -22,7 +22,7 @@ export class BooksPage implements OnInit {
     price: 0
   };
   save() {
-    if(this.state == 'add') {
+    if (this.state == 'add') {
       this.booksService.add(this.item);
     }
     else if (this.state == 'edit') {
@@ -57,9 +57,9 @@ export class BooksPage implements OnInit {
     this.item = { ...book };
     this.state = 'edit';
   }
-  remove(book:bookItem){
-    this.item={...book};
-    this.state='remove';
+  remove(book: bookItem) {
+    this.item = { ...book };
+    this.state = 'remove';
   }
 }
 export interface bookItem {
