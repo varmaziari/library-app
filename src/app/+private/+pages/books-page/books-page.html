@@ -22,8 +22,8 @@
             <td>{{book.publisher}}</td>
             <td>{{book.price | number}} تومان</td>
             <td>
-                <button>ویرایش</button>
-                <button>حذف</button>
+                <button (click)="edit(book)">ویرایش</button>
+                <button (click)="remove(book)">حذف</button>
             </td>
         </tr>
         }
@@ -31,27 +31,32 @@
 </table>
 }
 @else{
+    @if (state=='remove') {
+    <div class="alert">
+        آیا از حذف این کتاب اطمینان دارید؟
+    </div>
+    }
 <form (ngSubmit)="save()">
     <div class="layer">
         <div>
             <label for="id">شناسه</label>
-            <input [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
+            <input [disabled]="state=='edit' || state=='remove'" [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
         </div>
         <div>
             <label for="title">عنوان</label>
-            <input [(ngModel)]="item.title" type="text" id="title" name="title" placeholder="عنوان">
+            <input  [disabled]="state=='remove'" [(ngModel)]="item.title" type="text" id="title" name="title" placeholder="عنوان">
         </div>
         <div>
             <label for="writer">نویسنده</label>
-            <input [(ngModel)]="item.writer" type="text" id="writer" name="writer" placeholder="نویسنده">
+            <input [disabled]="state=='remove'" [(ngModel)]="item.writer" type="text" id="writer" name="writer" placeholder="نویسنده">
         </div>
         <div>
             <label for="publisher">ناشر</label>
-            <input [(ngModel)]="item.publisher" type="text" id="publisher" name="publisher" placeholder="ناشر">
+            <input [disabled]="state=='remove'" [(ngModel)]="item.publisher" type="text" id="publisher" name="publisher" placeholder="ناشر">
         </div>
         <div>
             <label for="price">قیمت</label>
-            <input [(ngModel)]="item.price" type="number" id="price" name="price" placeholder="قیمت">
+            <input [disabled]="state=='remove'" [(ngModel)]="item.price" type="number" id="price" name="price" placeholder="قیمت">
         </div>
         <div>
             <button type="submit">تایید</button>

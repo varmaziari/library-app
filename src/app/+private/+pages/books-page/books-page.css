@@ -57,3 +57,16 @@ input{
     margin: 0.5em 0;
     padding: 0.5em;
 }
+input[disabled]{
+        background-color: silver;
+    cursor: not-allowed;
+}
+.alert{
+    background-color: rgb(245, 90, 90);
+    color: white;
+    padding: 1em;
+    border-radius: 0.3em;
+    text-align: center;
+    margin-right: -20px;
+    margin-top: -10px;
+}

@@ -1,11 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { BooksService } from './books-service';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
+import { disabled } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-books-page',
-  imports: [FormsModule,DecimalPipe],
+  imports: [FormsModule, DecimalPipe],
   templateUrl: './books-page.html',
   styleUrl: './books-page.css',
 })
@@ -21,9 +22,17 @@ export class BooksPage implements OnInit {
     price: 0
   };
   save() {
-    this.booksService.add(this.item);
+    if(this.state == 'add') {
+      this.booksService.add(this.item);
+    }
+    else if (this.state == 'edit') {
+      this.booksService.update(this.item);
+    }
+    else if (this.state == 'remove') {
+      this.booksService.remove(this.item);
+    }
     this.refreshData();
-    this.state='list'
+    this.state = 'list'
   }
   refreshData() {
     this.data = this.booksService.list();
@@ -36,6 +45,21 @@ export class BooksPage implements OnInit {
   }
   add() {
     this.state = "add"
+    this.item = {
+      id: 0,
+      title: '',
+      writer: '',
+      publisher: '',
+      price: 0
+    };
+  }
+  edit(book: bookItem) {
+    this.item = { ...book };
+    this.state = 'edit';
+  }
+  remove(book:bookItem){
+    this.item={...book};
+    this.state='remove';
   }
 }
 export interface bookItem {

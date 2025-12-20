@@ -8,7 +8,7 @@ import { MembersService } from './members-service';
   templateUrl: './members-page.html',
   styleUrl: './members-page.css',
 })
-export class MembersPage implements OnInit{
+export class MembersPage implements OnInit {
   booksService = inject(MembersService);
   data: memberItem[] = []
   state: string = 'list';
@@ -23,7 +23,7 @@ export class MembersPage implements OnInit{
   save() {
     this.booksService.add(this.item);
     this.refreshData();
-    this.state='list'
+    this.state = 'list'
   }
   refreshData() {
     this.data = this.booksService.list();
@@ -36,6 +36,14 @@ export class MembersPage implements OnInit{
   }
   add() {
     this.state = "add"
+    this.item = {
+      id: 0,
+      name: '',
+      family: '',
+      nationalCode: '',
+      phoneNumber: '',
+      address: '',
+    };
   }
 }
 export interface memberItem {
