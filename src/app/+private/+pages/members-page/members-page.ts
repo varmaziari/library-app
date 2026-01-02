@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MembersService } from './members-service';
+import { Thing } from '../../../+shared/+base/base-thing';
 
 @Component({
   selector: 'app-members-page',
@@ -62,8 +63,7 @@ export class MembersPage implements OnInit {
     this.state = 'remove';
   }
 }
-export interface memberItem {
-  id: number;
+export interface memberItem extends Thing {
   name: string;
   family: string;
   nationalCode: string;

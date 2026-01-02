@@ -3,6 +3,7 @@ import { BooksService } from './books-service';
 import { FormsModule } from '@angular/forms';
 import { DecimalPipe } from '@angular/common';
 import { disabled } from '@angular/forms/signals';
+import { Thing } from '../../../+shared/+base/base-thing';
 
 @Component({
   selector: 'app-books-page',
@@ -62,8 +63,7 @@ export class BooksPage implements OnInit {
     this.state = 'remove';
   }
 }
-export interface bookItem {
-  id: number;
+export interface bookItem extends Thing{
   title: string;
   writer: string;
   publisher: string;
