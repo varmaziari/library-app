@@ -1,0 +1,81 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+tr {
+    border-bottom: 1px solid rgb(93, 93, 93);
+}
+
+tr:nth-last-of-type(2n+1) {
+    background-color: rgba(103, 32, 179, 0.355)
+}
+
+td,
+th {
+    padding: 0.3em;
+}
+
+td:last-of-type {
+    text-align: left;
+}
+
+th {
+    background-color: rgb(83, 23, 129);
+    color: white;
+}
+
+button {
+    background-color: #4d1a7c;
+    ;
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.3em;
+    margin: 0.3em;
+}
+
+.layer {
+    box-sizing: border-box;
+    min-height: 40vh;
+    width: 300px;
+    margin: 5em 32em;
+    padding: 1em;
+    background-color: #7d599f50;
+    border-radius: 0.4em;
+
+}
+
+label {
+    margin: 0.5em 0;
+}
+
+input {
+    display: block;
+    width: 90%;
+    border-radius: 0.5em;
+    border: 0;
+    margin: 0.5em 0;
+    padding: 0.5em;
+}
+
+input[disabled] {
+    background-color: silver;
+    cursor: not-allowed;
+}
+
+.alert {
+    background-color: rgb(245, 90, 90);
+    color: white;
+    padding: 1em;
+    border-radius: 0.3em;
+    text-align: center;
+    margin-right: -20px;
+    margin-top: -10px;
+}
+
+.SaveAndCancel {
+    text-align: center;
+    padding-left: 30px;
+}

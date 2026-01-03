@@ -1,67 +1,38 @@
-@if (state=='list') {
-<div>
-    <button (click)="add()">افزودن</button>
-</div>
-<table>
-    <thead>
-        <tr>
-            <th>شناسه</th>
-            <th>عنوان</th>
-            <th>نویسنده</th>
-            <th>ناشر</th>
-            <th>قیمت</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (book of data; track $index) {
-        <tr>
-            <td>{{book.id}}</td>
-            <td>{{book.title}}</td>
-            <td>{{book.writer}}</td>
-            <td>{{book.publisher}}</td>
-            <td>{{book.price | number}} تومان</td>
-            <td>
-                <button (click)="edit(book)">ویرایش</button>
-                <button (click)="remove(book)">حذف</button>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-}
-@else{
-    @if (state=='remove') {
-    <div class="alert">
-        آیا از حذف این کتاب اطمینان دارید؟
-    </div>
-    }
-<form (ngSubmit)="save()">
-    <div class="layer">
+<my-crud 
+    [myState]="state"
+    (onAdd)="add()"
+    (onCancel)="cancel()"
+    [columns]="columns"
+    [data]="data"
+    (onEdit)="edit($event)"
+    (onRemove)="remove($event)"
+    (onSave)="save()"
+    >
+     <div class="layer">
         <div>
             <label for="id">شناسه</label>
-            <input [disabled]="state=='edit' || state=='remove'" [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
+            <input [disabled]="state=='edit' || state=='remove'" [(ngModel)]="item.id" type="number" id="id" name="id"
+                placeholder="شناسه">
         </div>
         <div>
             <label for="title">عنوان</label>
-            <input  [disabled]="state=='remove'" [(ngModel)]="item.title" type="text" id="title" name="title" placeholder="عنوان">
+            <input [disabled]="state=='remove'" [(ngModel)]="item.title" type="text" id="title" name="title"
+                placeholder="عنوان">
         </div>
         <div>
             <label for="writer">نویسنده</label>
-            <input [disabled]="state=='remove'" [(ngModel)]="item.writer" type="text" id="writer" name="writer" placeholder="نویسنده">
+            <input [disabled]="state=='remove'" [(ngModel)]="item.writer" type="text" id="writer" name="writer"
+                placeholder="نویسنده">
         </div>
         <div>
             <label for="publisher">ناشر</label>
-            <input [disabled]="state=='remove'" [(ngModel)]="item.publisher" type="text" id="publisher" name="publisher" placeholder="ناشر">
+            <input [disabled]="state=='remove'" [(ngModel)]="item.publisher" type="text" id="publisher" name="publisher"
+                placeholder="ناشر">
         </div>
         <div>
             <label for="price">قیمت</label>
-            <input [disabled]="state=='remove'" [(ngModel)]="item.price" type="number" id="price" name="price" placeholder="قیمت">
-        </div>
-        <div>
-            <button type="submit">تایید</button>
-            <button (click)="cancel()" type="button">انصراف</button>
+            <input [disabled]="state=='remove'" [(ngModel)]="item.price" type="number" id="price" name="price"
+                placeholder="قیمت">
         </div>
     </div>
-</form>
-}
+</my-crud>

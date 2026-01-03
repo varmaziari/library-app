@@ -1,45 +1,14 @@
-@if (state=='list') {
-<div>
-    <button (click)="add()">افزودن</button>
-</div>
-<table>
-    <thead>
-        <tr>
-            <th>شناسه</th>
-            <th>نام</th>
-            <th>نام خانوادگی </th>
-            <th>کدملی</th>
-            <th>شماره تلفن</th>
-            <th>آدرس </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @for (member of data; track $index) {
-        <tr>
-            <td>{{member.id}}</td>
-            <td>{{member.name}}</td>
-            <td>{{member.family}}</td>
-            <td>{{member.nationalCode}}</td>
-            <td>{{member.phoneNumber}}</td>
-            <td>{{member.address}}</td>
-            <td>
-                <button (click)="edit(member)">ویرایش</button>
-                <button (click)="remove(member)">حذف</button>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
-}
-@else{
-@if (state=='remove') {
-<div class="alert">
-    آیا از حذف این کتاب اطمینان دارید؟
-</div>
-}
-<form (ngSubmit)="save()">
-    <div class="layer">
+<my-crud 
+    [myState]="state"
+    (onAdd)="add()"
+    (onCancel)="cancel()"
+    [columns]="columns"
+    [data]="data"
+    (onEdit)="edit($event)"
+    (onRemove)="remove($event)"
+    (onSave)="save()"
+    >
+     <div class="layer">
         <div>
             <label for="id">شناسه</label>
             <input [disabled]="state=='edit' || state=='remove'" [(ngModel)]="item.id" type="number" id="id" name="id" placeholder="شناسه">
@@ -66,10 +35,5 @@
             <label for="address">آدرس</label>
             <input [disabled]="state=='remove'" [(ngModel)]="item.address" type="text" id="address" name="address" placeholder="آدرس">
         </div>
-        <div>
-            <button type="submit">تایید</button>
-            <button (click)="cancel()" type="button">انصراف</button>
-        </div>
     </div>
-</form>
-}
+</my-crud>
